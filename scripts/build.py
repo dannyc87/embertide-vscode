@@ -299,9 +299,14 @@ def gen_package_json():
         "description": "A dark theme built and checked in OKLCH for consistent contrast, hue separation, and saturation.",
         "version": "1.0.0",
         "publisher": "dannyc87",
+        "license": "MIT",
         "engines": {"vscode": "^1.75.0"},
         "categories": ["Themes"],
+        "keywords": ["theme", "dark theme", "color theme", "oklch", "syntax highlighting"],
         "repository": {"type": "git", "url": "https://github.com/dannyc87/embertide-vscode"},
+        "bugs": {"url": "https://github.com/dannyc87/embertide-vscode/issues"},
+        "homepage": "https://github.com/dannyc87/embertide-vscode#readme",
+        "galleryBanner": {"color": "#001219", "theme": "dark"},
         "contributes": {
             "themes": [
                 {"label": "EmberTide", "uiTheme": "vs-dark", "path": "./themes/embertide-color-theme.json"},
