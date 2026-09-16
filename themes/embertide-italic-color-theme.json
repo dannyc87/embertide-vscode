@@ -226,7 +226,9 @@
     {
       "name": "Operator",
       "scope": [
-        "keyword.operator"
+        "keyword.operator",
+        "keyword.control.ternary",
+        "keyword.operator.ternary"
       ],
       "settings": {
         "foreground": "#e9d8a6"
