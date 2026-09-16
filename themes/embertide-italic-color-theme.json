@@ -201,8 +201,8 @@
     {
       "name": "Keyword",
       "scope": [
-        "keyword",
         "keyword.control",
+        "keyword.other",
         "storage.type",
         "storage.modifier"
       ],
@@ -226,9 +226,7 @@
     {
       "name": "Operator",
       "scope": [
-        "keyword.operator",
-        "keyword.control.ternary",
-        "keyword.operator.ternary"
+        "keyword.operator"
       ],
       "settings": {
         "foreground": "#e9d8a6"
