@@ -1,0 +1,148 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>hero</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: #12181a; }
+  body { display: flex; align-items: center; justify-content: center; width: 1000px; height: 640px; font-family: 'IBM Plex Sans', sans-serif; }
+
+  .window {
+    width: 940px;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 40px 80px -30px rgba(0,0,0,0.65), 0 0 0 1px rgba(238,155,0,0.10);
+    background: #001219;
+  }
+
+  .titlebar {
+    display: flex; align-items: center;
+    height: 34px;
+    background: #001219;
+    padding: 0 12px;
+    border-bottom: 1px solid #0d3540;
+  }
+  .traffic { display: flex; gap: 7px; width: 90px; }
+  .traffic span { width: 11px; height: 11px; border-radius: 50%; background: #2a3a3e; }
+  .titlebar .name { flex: 1; text-align: center; font-size: 12px; color: #6d787c; margin-right: 90px; }
+
+  .tabs { display: flex; background: #001219; }
+  .tab {
+    display: flex; align-items: center; gap: 7px;
+    padding: 8px 16px; font-size: 12.5px; font-family: 'IBM Plex Mono', monospace;
+    color: #6d787c; background: #001219; border-right: 1px solid #0d3540;
+  }
+  .tab.active { color: #e9d8a6; border-top: 2px solid #ee9b00; padding-top: 6px; }
+  .tab .dot { width: 7px; height: 7px; border-radius: 50%; background: #febd5c; }
+
+  .body { display: flex; }
+  .gutter {
+    padding: 16px 0; text-align: right; color: #4a5a5e;
+    font-family: 'IBM Plex Mono', monospace; font-size: 13px; line-height: 1.7;
+    user-select: none; width: 36px; background: #001219; white-space: pre;
+  }
+  .code {
+    flex: 1; padding: 16px 20px 16px 14px; margin: 0;
+    font-family: 'IBM Plex Mono', monospace; font-size: 13px; line-height: 1.7;
+    color: #e9d8a6; white-space: pre;
+  }
+
+  .statusbar {
+    display: flex; align-items: center; gap: 14px;
+    height: 26px; padding: 0 14px;
+    background: #001219; border-top: 1px solid #0d3540;
+    font-family: 'IBM Plex Sans', sans-serif; font-size: 11px; color: #e9d8a6;
+  }
+  .statusbar .branch { color: #e9d8a6; }
+  .statusbar .spacer { flex: 1; }
+  .statusbar .badge {
+    background: #008388; color: #001219; font-weight: 600;
+    padding: 1px 7px; border-radius: 3px; font-size: 10.5px;
+  }
+  .statusbar .dim { color: #6d787c; }
+
+  .kw { color: #ab51e3; }
+  .cf { color: #c23626; }
+  .fn { color: #00b4d8; }
+  .cls { color: #febd5c; }
+  .str { color: #199647; }
+  .com { color: #6d787c; font-style: italic; }
+  .par { color: #65dcb9; }
+  .lang { color: #65dcb9; font-style: italic; }
+  .dec { color: #008388; }
+  .fg { color: #e9d8a6; }
+</style>
+</head>
+<body>
+  <div class="window">
+    <div class="titlebar">
+      <div class="traffic"><span></span><span></span><span></span></div>
+      <div class="name">user-service.ts — embertide-vscode</div>
+    </div>
+    <div class="tabs">
+      <div class="tab active"><span class="dot"></span>user-service.ts</div>
+      <div class="tab">api.ts</div>
+    </div>
+    <div class="body">
+      <div class="gutter">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23</div>
+      <pre class="code"><span class="com">// User service — fetches and caches profile data</span>
+<span class="kw">import</span> { <span class="cls">ApiClient</span> } <span class="kw">from</span> <span class="str">"./api"</span>;
+
+<span class="dec">@Injectable</span>()
+<span class="kw">export</span> <span class="kw">class</span> <span class="cls">UserService</span> {
+  <span class="kw">private</span> cache = <span class="fg">new</span> <span class="cls">Map</span>&lt;<span class="cls">string</span>, <span class="cls">User</span>&gt;();
+
+  constructor(<span class="kw">private</span> <span class="kw">readonly</span> <span class="par">api</span>: <span class="cls">ApiClient</span>) {}
+
+  <span class="kw">async</span> <span class="fn">getUser</span>(<span class="par">id</span>: <span class="cls">string</span>): <span class="cls">Promise</span>&lt;<span class="cls">User</span>&gt; {
+    <span class="kw">if</span> (<span class="lang">this</span>.cache.<span class="fn">has</span>(id)) {
+      <span class="cf">return</span> <span class="lang">this</span>.cache.<span class="fn">get</span>(id)!;
+    }
+
+    <span class="cf">try</span> {
+      <span class="kw">const</span> user = <span class="kw">await</span> <span class="lang">this</span>.api.<span class="fn">fetch</span>(<span class="str">`/users/${</span><span class="fg">id</span><span class="str">}`</span>);
+      <span class="lang">this</span>.cache.<span class="fn">set</span>(id, user);
+      <span class="cf">return</span> user;
+    } <span class="cf">catch</span> (error) {
+      <span class="cf">throw</span> <span class="fg">new</span> <span class="cls">Error</span>(<span class="str">`Failed to load user ${</span><span class="fg">id</span><span class="str">}`</span>);
+    }
+  }
+}</pre>
+    </div>
+    <div class="statusbar">
+      <span class="branch">⎇ main</span>
+      <span class="dim">✓ 0 problems</span>
+      <span class="spacer"></span>
+      <span class="badge">EmberTide</span>
+      <span class="dim">TypeScript</span>
+      <span class="dim">Ln 12, Col 17</span>
+    </div>
+  </div>
+</body>
+</html>

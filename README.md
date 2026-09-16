@@ -5,6 +5,12 @@ OKLCH for consistent contrast, hue separation, and saturation. Companion to
 [dannyc87/embertide](https://github.com/dannyc87/embertide), the terminal theme family
 this palette comes from.
 
+![EmberTide](assets/screenshot-hero.png)
+
+Also ships **EmberTide Italic**, identical except keywords and control-flow lean italic:
+
+![EmberTide Italic](assets/screenshot-italic.png)
+
 ## Install (local, unpacked)
 
 ```sh
@@ -41,6 +47,15 @@ throwaway venv rather than installing those system-wide:
 ```sh
 python3 -m venv /tmp/iconenv && /tmp/iconenv/bin/pip install Pillow numpy
 /tmp/iconenv/bin/python3 scripts/gen_icon.py
+```
+
+`assets/screenshot-hero.png` and `assets/screenshot-italic.png` are rendered from
+[`mockups/hero.html`](mockups/hero.html) and [`mockups/hero-italic.html`](mockups/hero-italic.html)
+via headless Chrome — those two HTML files have the theme's hex values copied in by
+hand (they don't read from `PALETTE`), so update them manually if colors change:
+
+```sh
+scripts/gen_screenshots.sh
 ```
 
 ## Publishing a new version
