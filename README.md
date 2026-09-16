@@ -34,6 +34,29 @@ if the terminal theme's colors change, update `PALETTE` here to match and re-run
 python3 scripts/build.py
 ```
 
+`icon.png` is generated separately by [`scripts/gen_icon.py`](scripts/gen_icon.py),
+which needs Pillow and numpy (not otherwise required by this repo) — run it in a
+throwaway venv rather than installing those system-wide:
+
+```sh
+python3 -m venv /tmp/iconenv && /tmp/iconenv/bin/pip install Pillow numpy
+/tmp/iconenv/bin/python3 scripts/gen_icon.py
+```
+
+## Publishing a new version
+
+1. Bump `VERSION` in `scripts/build.py`, then regenerate: `python3 scripts/build.py`.
+2. Commit the result.
+3. Tag and push: `git tag vX.Y.Z && git push origin vX.Y.Z`.
+
+[`.github/workflows/publish.yml`](.github/workflows/publish.yml) picks up the tag,
+confirms it matches `package.json`'s version, re-runs `scripts/build.py` to make sure
+nothing committed is stale, and publishes with
+[`vsce`](https://github.com/microsoft/vscode-vsce) using the `VSCE_PAT` repository
+secret (Settings → Secrets and variables → Actions → New repository secret — a
+Marketplace-scoped Personal Access Token from
+[dev.azure.com](https://dev.azure.com)).
+
 ## License
 
 MIT — see [LICENSE](LICENSE).

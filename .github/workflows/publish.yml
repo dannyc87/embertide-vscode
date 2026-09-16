@@ -1,0 +1,40 @@
+name: Publish to VS Code Marketplace
+
+on:
+  push:
+    tags:
+      - "v*"
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+
+      - name: Verify tag matches package.json version
+        run: |
+          PKG_VERSION="v$(node -p "require('./package.json').version")"
+          if [ "$PKG_VERSION" != "${{ github.ref_name }}" ]; then
+            echo "Tag ${{ github.ref_name }} does not match package.json version ($PKG_VERSION)."
+            echo "Bump VERSION in scripts/build.py, run it, commit, then re-tag."
+            exit 1
+          fi
+
+      - name: Regenerate theme files and check nothing is out of sync
+        run: |
+          python3 scripts/build.py
+          git diff --exit-code -- themes/ package.json || {
+            echo "Generated files don't match the committed ones -- run scripts/build.py locally and commit the result before tagging a release."
+            exit 1
+          }
+
+      - name: Publish
+        run: npx --yes @vscode/vsce publish -p "${{ secrets.VSCE_PAT }}"

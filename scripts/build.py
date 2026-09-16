@@ -12,6 +12,10 @@ import os
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+# Bump this, run scripts/build.py, commit, then `git tag vX.Y.Z && git push --tags`
+# to trigger the publish workflow (see .github/workflows/publish.yml).
+VERSION = "1.0.0"
+
 # Copied from github.com/dannyc87/embertide/scripts/build.py's FINAL dict.
 PALETTE = {
     "background": "001219", "foreground": "e9d8a6",
@@ -299,6 +303,7 @@ def gen_package_json():
         "description": "A dark theme built and checked in OKLCH for consistent contrast, hue separation, and saturation.",
         "version": "1.0.0",
         "publisher": "dannyc87",
+        "icon": "icon.png",
         "license": "MIT",
         "engines": {"vscode": "^1.75.0"},
         "categories": ["Themes"],

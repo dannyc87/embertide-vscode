@@ -4,6 +4,7 @@
   "description": "A dark theme built and checked in OKLCH for consistent contrast, hue separation, and saturation.",
   "version": "1.0.0",
   "publisher": "dannyc87",
+  "icon": "icon.png",
   "license": "MIT",
   "engines": {
     "vscode": "^1.75.0"
