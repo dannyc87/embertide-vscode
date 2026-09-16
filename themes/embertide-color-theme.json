@@ -272,6 +272,16 @@
       }
     },
     {
+      "name": "Language variable",
+      "scope": [
+        "variable.language"
+      ],
+      "settings": {
+        "foreground": "#65dcb9",
+        "fontStyle": "italic"
+      }
+    },
+    {
       "name": "Tag",
       "scope": [
         "entity.name.tag"
@@ -313,6 +323,16 @@
       }
     },
     {
+      "name": "Template expression",
+      "scope": [
+        "punctuation.definition.template-expression",
+        "meta.template.expression"
+      ],
+      "settings": {
+        "foreground": "#e9d8a6"
+      }
+    },
+    {
       "name": "Markup heading",
       "scope": [
         "markup.heading"
@@ -340,6 +360,15 @@
       "settings": {
         "foreground": "#e9d8a6",
         "fontStyle": "italic"
+      }
+    },
+    {
+      "name": "Markup inline code",
+      "scope": [
+        "markup.inline.raw"
+      ],
+      "settings": {
+        "foreground": "#65dcb9"
       }
     },
     {
