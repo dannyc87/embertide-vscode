@@ -20,6 +20,11 @@
         "label": "EmberTide",
         "uiTheme": "vs-dark",
         "path": "./themes/embertide-color-theme.json"
+      },
+      {
+        "label": "EmberTide Italic",
+        "uiTheme": "vs-dark",
+        "path": "./themes/embertide-italic-color-theme.json"
       }
     ]
   }

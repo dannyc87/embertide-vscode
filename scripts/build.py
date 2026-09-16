@@ -70,7 +70,7 @@ def verify():
     print("verify: OK —", len(PALETTE), "roles parsed, accent rows are visible against bg")
 
 
-def gen_theme():
+def gen_theme(variant_name, output_path, italic_keywords=False):
     hh = lambda role: f"#{h(role)}"
     fg, bg = hh('foreground'), hh('background')
     dim = hh('bright_black')          # Stone Gray -- muted UI text/borders
@@ -258,7 +258,8 @@ def gen_theme():
         rule("Regexp", ["string.regexp"], hh('cyan')),
         rule("Number", ["constant.numeric"], accent),
         rule("Language constant", ["constant.language", "constant.character"], hh('magenta')),
-        rule("Keyword", ["keyword", "keyword.control", "storage.type", "storage.modifier"], hh('magenta')),
+        rule("Keyword", ["keyword", "keyword.control", "storage.type", "storage.modifier"], hh('magenta'),
+             "italic" if italic_keywords else None),
         rule("Operator", ["keyword.operator"], fg),
         rule("Function", ["entity.name.function", "support.function", "meta.function-call"], hh('blue')),
         rule("Class / type", ["entity.name.class", "entity.name.type", "support.class", "support.type"], hh('bright_yellow')),
@@ -276,13 +277,15 @@ def gen_theme():
 
     theme = {
         "$generated": "by scripts/build.py — do not hand-edit",
-        "name": "EmberTide",
+        "name": variant_name,
         "type": "dark",
         "colors": colors,
         "tokenColors": token_colors,
     }
-    write("themes/embertide-color-theme.json", json.dumps(theme, indent=2, ensure_ascii=False) + "\n")
+    write(output_path, json.dumps(theme, indent=2, ensure_ascii=False) + "\n")
 
+
+def gen_package_json():
     package_json = {
         "name": "embertide-theme",
         "displayName": "EmberTide",
@@ -294,7 +297,8 @@ def gen_theme():
         "repository": {"type": "git", "url": "https://github.com/dannyc87/embertide-vscode"},
         "contributes": {
             "themes": [
-                {"label": "EmberTide", "uiTheme": "vs-dark", "path": "./themes/embertide-color-theme.json"}
+                {"label": "EmberTide", "uiTheme": "vs-dark", "path": "./themes/embertide-color-theme.json"},
+                {"label": "EmberTide Italic", "uiTheme": "vs-dark", "path": "./themes/embertide-italic-color-theme.json"}
             ]
         },
     }
@@ -303,5 +307,7 @@ def gen_theme():
 
 if __name__ == "__main__":
     verify()
-    gen_theme()
+    gen_theme("EmberTide", "themes/embertide-color-theme.json", italic_keywords=False)
+    gen_theme("EmberTide Italic", "themes/embertide-italic-color-theme.json", italic_keywords=True)
+    gen_package_json()
     print("done")
