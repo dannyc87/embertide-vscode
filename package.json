@@ -1,0 +1,26 @@
+{
+  "name": "embertide-theme",
+  "displayName": "EmberTide",
+  "description": "A dark theme built and checked in OKLCH for consistent contrast, hue separation, and saturation.",
+  "version": "1.0.0",
+  "publisher": "dannyc87",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Themes"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dannyc87/embertide-vscode"
+  },
+  "contributes": {
+    "themes": [
+      {
+        "label": "EmberTide",
+        "uiTheme": "vs-dark",
+        "path": "./themes/embertide-color-theme.json"
+      }
+    ]
+  }
+}
