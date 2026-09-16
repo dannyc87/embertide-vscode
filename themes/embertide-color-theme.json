@@ -211,6 +211,17 @@
       }
     },
     {
+      "name": "Control flow",
+      "scope": [
+        "keyword.control.flow",
+        "keyword.control.trycatch",
+        "keyword.control.exception"
+      ],
+      "settings": {
+        "foreground": "#c23626"
+      }
+    },
+    {
       "name": "Operator",
       "scope": [
         "keyword.operator"
@@ -276,6 +287,20 @@
       ],
       "settings": {
         "foreground": "#febd5c"
+      }
+    },
+    {
+      "name": "Decorator",
+      "scope": [
+        "meta.decorator",
+        "punctuation.decorator",
+        "entity.name.function.decorator",
+        "storage.type.annotation",
+        "punctuation.definition.annotation",
+        "meta.attribute"
+      ],
+      "settings": {
+        "foreground": "#008388"
       }
     },
     {
