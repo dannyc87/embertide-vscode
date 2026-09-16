@@ -281,8 +281,11 @@ def gen_theme(variant_name, output_path, italic_keywords=False):
         rule("Markup heading", ["markup.heading"], accent, "bold"),
         rule("Markup bold", ["markup.bold"], fg, "bold"),
         rule("Markup italic", ["markup.italic"], fg, "italic"),
+        rule("Markup strikethrough", ["markup.strikethrough"], dim, "strikethrough"),
+        rule("Markup quote", ["markup.quote"], dim, "italic"),
         rule("Markup inline code", ["markup.inline.raw"], hh('bright_cyan')),
-        rule("Markup link", ["markup.underline.link"], hh('bright_blue')),
+        rule("Markup link text", ["string.other.link.title"], hh('blue'), "underline"),
+        rule("Markup link url", ["markup.underline.link"], dim),
         rule("Invalid", ["invalid", "invalid.illegal"], hh('red')),
     ]
 

@@ -363,6 +363,26 @@
       }
     },
     {
+      "name": "Markup strikethrough",
+      "scope": [
+        "markup.strikethrough"
+      ],
+      "settings": {
+        "foreground": "#6d787c",
+        "fontStyle": "strikethrough"
+      }
+    },
+    {
+      "name": "Markup quote",
+      "scope": [
+        "markup.quote"
+      ],
+      "settings": {
+        "foreground": "#6d787c",
+        "fontStyle": "italic"
+      }
+    },
+    {
       "name": "Markup inline code",
       "scope": [
         "markup.inline.raw"
@@ -372,12 +392,22 @@
       }
     },
     {
-      "name": "Markup link",
+      "name": "Markup link text",
+      "scope": [
+        "string.other.link.title"
+      ],
+      "settings": {
+        "foreground": "#00b4d8",
+        "fontStyle": "underline"
+      }
+    },
+    {
+      "name": "Markup link url",
       "scope": [
         "markup.underline.link"
       ],
       "settings": {
-        "foreground": "#0ad6ff"
+        "foreground": "#6d787c"
       }
     },
     {
