@@ -1,5 +1,8 @@
 # EmberTide for VS Code
 
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+[![WCAG 2.1 | AA](https://img.shields.io/badge/WCAG_2.1_%7C_AA-001219?logo=w3c&logoColor=e9d8a6&style=flat-square)](https://www.w3.org/TR/WCAG21/#contrast-minimum)
+
 A complete VS Code theme — workbench UI and syntax highlighting — built and checked in
 OKLCH for consistent contrast, hue separation, and saturation. Companion to
 [dannyc87/embertide](https://github.com/dannyc87/embertide), the terminal theme family
