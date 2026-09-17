@@ -25,7 +25,7 @@ PALETTE = {
     "black": "001219", "red": "c23626", "green": "199647", "yellow": "ee9b00",
     "blue": "00b4d8", "magenta": "ab51e3", "cyan": "008388", "white": "e9d8a6",
 
-    "bright_black": "6d787c", "bright_red": "da5b2d", "bright_green": "8fe259",
+    "bright_black": "566165", "bright_red": "da5b2d", "bright_green": "8fe259",
     "bright_yellow": "febd5c", "bright_blue": "0ad6ff", "bright_magenta": "cf76ff",
     "bright_cyan": "65dcb9", "bright_white": "f6ebca",
 }
@@ -289,12 +289,42 @@ def gen_theme(variant_name, output_path, italic_keywords=False):
         rule("Invalid", ["invalid", "invalid.illegal"], hh('red')),
     ]
 
+    # Semantic highlighting (fed by the language server's real type info, not
+    # just TextMate grammar) -- this is what colors an import binding by what
+    # it actually resolves to (class/function/const/etc) rather than leaving
+    # everything inside `import { ... }` a flat variable color, since a
+    # grammar alone can't know that. Confirmed real schema/token set from
+    # code.visualstudio.com/api/language-extensions/semantic-highlight-guide.
+    # Reuses the exact same role assignments as token_colors above.
+    semantic_token_colors = {
+        "class": hh('bright_yellow'),
+        "interface": hh('bright_yellow'),
+        "enum": hh('bright_yellow'),
+        "struct": hh('bright_yellow'),
+        "type": hh('bright_yellow'),
+        "typeParameter": hh('bright_yellow'),
+        "namespace": fg,
+        "function": hh('blue'),
+        "method": hh('blue'),
+        "event": hh('blue'),
+        "macro": hh('magenta'),
+        "enumMember": hh('magenta'),
+        "parameter": hh('bright_cyan'),
+        "variable": fg,
+        "property": fg,
+        "decorator": hh('cyan'),
+        "label": dim,
+        "*.defaultLibrary": dim,
+    }
+
     theme = {
         "$generated": "by scripts/build.py — do not hand-edit",
         "name": variant_name,
         "type": "dark",
+        "semanticHighlighting": True,
         "colors": colors,
         "tokenColors": token_colors,
+        "semanticTokenColors": semantic_token_colors,
     }
     write(output_path, json.dumps(theme, indent=2, ensure_ascii=False) + "\n")
 
