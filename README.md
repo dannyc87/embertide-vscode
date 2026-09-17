@@ -3,7 +3,10 @@
 A complete VS Code theme — workbench UI and syntax highlighting — built and checked in
 OKLCH for consistent contrast, hue separation, and saturation. Companion to
 [dannyc87/embertide](https://github.com/dannyc87/embertide), the terminal theme family
-this palette comes from.
+this palette comes from, and to
+[dannyc87/embertide-jetbrains](https://github.com/dannyc87/embertide-jetbrains) for
+JetBrains IDEs. All three implement the same role mapping, defined once in
+[embertide's SPEC.md](https://github.com/dannyc87/embertide/blob/main/SPEC.md).
 
 ![EmberTide](assets/screenshot-hero.png)
 
